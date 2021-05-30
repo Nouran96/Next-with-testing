@@ -12,6 +12,16 @@ function* fetchUsers() {
   }
 }
 
+function* fetchUserDetails({ payload }) {
+  try {
+    const response = yield call(api.fetchUserDetails, payload);
+    yield put(actions.userDetailsRecieve(response.data));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export function* usersSaga() {
   yield takeLatest(types.FETCH_USERS, fetchUsers);
+  yield takeLatest(types.FETCH_USER_DETAILS, fetchUserDetails);
 }

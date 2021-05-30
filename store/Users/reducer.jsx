@@ -2,6 +2,7 @@ import * as types from "./types";
 
 const INITIAL_STATE = {
   usersList: [],
+  userDetails: {},
 };
 
 export default function users(state = INITIAL_STATE, action) {
@@ -10,6 +11,11 @@ export default function users(state = INITIAL_STATE, action) {
       return {
         ...state,
         usersList: action.payload,
+      };
+    case types.USER_DETAILS_RECIEVE:
+      return {
+        ...state,
+        userDetails: action.payload,
       };
     default:
       return state;

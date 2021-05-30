@@ -3,12 +3,14 @@ import { useEffect } from "react";
 import { fetchUsers } from "../store/Users/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardContent } from "@material-ui/core";
+import { Router, useRouter } from "next/router";
 
 export default function Home() {
   const dispatch = useDispatch();
   const {
     users: { usersList },
   } = useSelector((state) => state);
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -18,13 +20,16 @@ export default function Home() {
     <div>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Login for next with testing" />
       </Head>
 
       <div className="row">
         {usersList.map((user) => (
           <div className="col-lg-4 col-sm-6 mb-3">
-            <Card raised>
+            <Card
+              raised
+              role="button"
+              onClick={() => router.push(`/users/${user.id}`)}
+            >
               <CardContent>
                 <p>
                   <b>Name:</b> {user.name}
