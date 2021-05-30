@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import MainBtn from "../Controls/MainBtn";
 import { Router, useRouter } from "next/router";
 import { Container } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/Auth/actions";
 
 const Layout = ({ children }) => {
   const {
@@ -13,9 +15,11 @@ const Layout = ({ children }) => {
 
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
   return (
     <Container>
-      <div className={`d-flex justify-content-between align-items-center`}>
+      <div className={`d-flex justify-content-between align-items-center mb-3`}>
         <div className={`${styles.logoContainer}`}>
           <Image
             src="/assets/next.png"
@@ -26,7 +30,15 @@ const Layout = ({ children }) => {
         </div>
 
         {user?.email ? (
-          <span>{user.email}</span>
+          <div className="d-flex">
+            <span>{user.email}</span>
+            <span
+              className={`${styles.logout} mx-2`}
+              onClick={() => dispatch(logout())}
+            >
+              Logout
+            </span>
+          </div>
         ) : (
           <MainBtn btnText="Login" onClick={() => router.push("/login")} />
         )}

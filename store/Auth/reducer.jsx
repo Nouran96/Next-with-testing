@@ -16,6 +16,13 @@ export default function auth(state = INITIAL_STATE, action) {
         ...state,
         user: action.payload,
       };
+    case types.LOGOUT:
+      if (typeof Storage !== "undefined")
+        localStorage.removeItem("user_testing");
+      return {
+        ...state,
+        user: {},
+      };
     default:
       return state;
   }

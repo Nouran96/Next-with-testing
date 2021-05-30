@@ -1,5 +1,14 @@
 .logoContainer {
   position: relative;
   width: 100px;
-  height: 150px;
+  height: 130px;
+}
+
+.logout {
+  color: rgb(245, 106, 106);
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.7);
+  }
 }
