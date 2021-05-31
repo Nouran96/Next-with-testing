@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import styles from "./styles.module.scss";
+// import styles from "./styles.module.scss";
 
 const MainBtn = ({ btnText, ...props }) => {
   return (
