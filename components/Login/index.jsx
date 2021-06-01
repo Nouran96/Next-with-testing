@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
-// import styles from "./styles.module.scss";
+import styles from "./styles.module.scss";
 import MainBtn from "../Controls/MainBtn";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
