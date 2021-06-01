@@ -23,8 +23,8 @@ describe("Login Form", () => {
     fireEvent.change(screen.getByPlaceholderText("Password"), {
       target: { value: "nouran123" },
     });
-    fireEvent.click(screen.getByRole("button"));
 
+    fireEvent.click(screen.getByRole("button"));
     const passwordField = await waitFor(() => {
       return screen.getByPlaceholderText("Password");
     });
