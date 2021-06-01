@@ -3,13 +3,9 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
+  moduleNameMapper: {
+    "\\.(css|less|sass|scss)$": "identity-obj-proxy",
   },
   testEnvironment: "jsdom",
-};
-
-module.exports = async () => {
-  return {
-    verbose: true,
-  };
 };
