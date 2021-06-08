@@ -24,7 +24,7 @@ export default function Home() {
 
       <div className="row">
         {usersList.map((user) => (
-          <div className="col-lg-4 col-sm-6 mb-3">
+          <div className="col-lg-4 col-sm-6 mb-3" key={user.id}>
             <Card
               raised
               role="button"
