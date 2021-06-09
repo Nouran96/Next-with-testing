@@ -1,5 +1,6 @@
-import { render, screen, fireEvent, waitFor, sleep } from "../test-utils";
+import { render, screen, fireEvent, waitFor } from "../test-utils";
 import * as redux from "react-redux";
+import * as nextRouter from "next/router";
 import Home from "../pages";
 import { within } from "@testing-library/dom";
 
@@ -19,6 +20,8 @@ const state = {
     ],
   },
 };
+
+const useRouter = jest.spyOn(nextRouter, "useRouter");
 
 describe("Home Page", () => {
   jest
@@ -40,6 +43,24 @@ describe("Home Page", () => {
 
       expect(within(card).getByText(user.name)).toBeInTheDocument();
       expect(within(card).getByText(user.phone)).toBeInTheDocument();
+    });
+  });
+
+  it("redirects to user details page on click", async () => {
+    const push = jest.fn();
+
+    useRouter.mockImplementationOnce(() => ({
+      push,
+    }));
+
+    render(<Home />);
+
+    const card = screen.getAllByRole("button")[0];
+
+    fireEvent.click(card);
+
+    await waitFor(() => {
+      expect(push).toHaveBeenCalledTimes(1);
     });
   });
 });
